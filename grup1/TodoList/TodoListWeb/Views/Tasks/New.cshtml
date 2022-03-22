@@ -1,0 +1,14 @@
+﻿@using TodoList.Domain
+@model TodoItem
+
+<form method="post">
+
+	<input asp-for="Id" />
+	<label>Description:</label>
+	<input asp-for="Text" />
+	@Html.ValidationMessageFor(m => m.Text)
+	<br />
+	<input type="submit"  value="Send" />
+		
+	@Html.ValidationSummary()
+</form>

@@ -1,0 +1,11 @@
+﻿@page
+@model TodoListWeb.Pages.Tasks.PendingModel
+@{
+}
+<h2>Pending Todo</h2>
+
+<ul>
+	@foreach (var item in Model.TodoItems) {
+		<li>@item.Text</li>
+	}
+</ul>
