@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(opt =>
+{
+    opt.ModelBinderProviders.Insert(0, new CustomCollectionModelBinderProvider());
+});
 builder.Services.AddSingleton<TodoItemsDatabase>();
 builder.Services.AddDataRepositories();
 

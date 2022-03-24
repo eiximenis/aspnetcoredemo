@@ -6,9 +6,9 @@ namespace TodoList.Data
 {
     class TodoItemRepository : ITodoItemRepository
     {
-        private readonly TodoItemsDatabase _bd;
+        private readonly TodoListDataContext  _bd;
 
-        public TodoItemRepository(TodoItemsDatabase db)
+        public TodoItemRepository(TodoListDataContext db)
         {
             _bd = db;
         }
@@ -16,6 +16,7 @@ namespace TodoList.Data
         public void Add(TodoItem item)
         { 
             _bd.Add(item);
+            _bd.SaveChanges();
         }
 
         public TodoItem GetById(int id)

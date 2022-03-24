@@ -17,6 +17,12 @@ namespace TodoListWeb.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Test(int[] data)
+        {
+            return Ok();
+        }
+
         [HttpPost]
         [ActionName("New")]
         public IActionResult New(TodoItem item)
