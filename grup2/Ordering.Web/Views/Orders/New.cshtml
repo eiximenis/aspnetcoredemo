@@ -1,0 +1,14 @@
+﻿@model NewOrderViewModel
+
+<h2>Add new Order Line for order with id: @Model.OrderId</h2>
+
+<form asp-action="New">
+	<label for="Qty">Quantity: </label>
+	<input asp-for="Qty" />
+	<br />
+	<label for="ProductName">Product</label>
+	<select asp-for="ProductName" asp-items="Model.Products">
+	</select>
+	<input type="submit" value="Send" />
+	<input name="OrderId"  type="hidden" value="@Model.OrderId" />
+</form>

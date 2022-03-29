@@ -1,0 +1,14 @@
+﻿@using Ordering.Domain
+@model IEnumerable<Order>
+
+<h2>All orders</h2>
+
+<ul>
+@foreach (var order in Model) {
+	<li>Order @order.Id has @order.Lines.Count() lines </li>
+}
+</ul>
+
+
+
+
