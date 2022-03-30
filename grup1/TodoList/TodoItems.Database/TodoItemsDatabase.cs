@@ -15,14 +15,12 @@ namespace TodoItems.Database
             _todoItems.Add(new TodoItem()
             {
                 Id = 1,
-                Done = false,
                 Text = "Planxar la roba"
             });
 
             _todoItems.Add(new TodoItem()
             {
                 Id = 2,
-                Done = false,
                 Text = "Regar les plantes"
             });
         }

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace TodoList.Domain
 {
-    public interface ITodoItemRepository
+    public interface IUnitOfWork
     {
-        IUnitOfWork UnitOfWork { get; }
-
-        TodoItem GetById(int id);
-        void Add(TodoItem item);
+        int SaveChanges();
     }
 }

@@ -20,6 +20,7 @@ namespace TodoList.Domain.Commands
             var todoItem = request.ItemToAdd;
             todoItem.Id = 0;
             _repo.Add(todoItem);
+            _repo.UnitOfWork.SaveChanges();
             return todoItem.Id;
         }
     }

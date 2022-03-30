@@ -24,7 +24,7 @@ app.MapControllers();
 
 var dbbuilder = new DbContextOptionsBuilder<TodoListDataContext>();
 dbbuilder.UseSqlServer(constr);
-var dbcontext = new TodoListDataContext(dbbuilder.Options);
+var dbcontext = new TodoListDataContext(dbbuilder.Options, null);
 dbcontext.Database.EnsureCreated();
 
 app.Run();

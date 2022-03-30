@@ -13,10 +13,11 @@ namespace TodoList.Data
             _bd = db;
         }
 
+        public IUnitOfWork UnitOfWork => _bd;
+
         public void Add(TodoItem item)
         { 
-            _bd.Add(item);
-            _bd.SaveChanges();
+            _bd.Add(item);           
         }
 
         public TodoItem GetById(int id)

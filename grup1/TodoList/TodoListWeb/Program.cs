@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using TodoItems.Database;
 using TodoList.Data;
 using TodoList.Domain;
@@ -5,12 +7,27 @@ using TodoList.Domain;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication(c =>
+{
+    c.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    c.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+    c =>
+    {
+        c.LoginPath = "/Auth/Login";
+    });
+
+builder.Services.AddRazorPages(options => options.Conventions.AuthorizePage("/Privacy"));
 builder.Services.AddControllersWithViews(opt =>
 {
     opt.ModelBinderProviders.Insert(0, new CustomCollectionModelBinderProvider());
 });
+
 builder.Services.AddSingleton<TodoItemsDatabase>();
+var constr = builder.Configuration["db"];
+builder.Services.AddDbContext<TodoListDataContext>(opt => opt.UseSqlServer(constr));
 builder.Services.AddDataRepositories();
 
 
@@ -29,6 +46,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

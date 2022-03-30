@@ -2,13 +2,22 @@
 
 namespace TodoList.Domain
 {
-    public class TodoItem
+    public class TodoItem : BaseEntity
     {
          
-        public int Id { get; set; }
+
         [Required()]
         public string Text { get; set; }
-        public bool Done { get; set; }
+        public bool Done { get; private set; }
+
+        public void MarkAsDone()
+        {
+            if (!Done)
+            {
+                Done = true;
+                AddEvent(new TodoItemResolvedEvent(Id));
+            }
+        }
 
     }
 }

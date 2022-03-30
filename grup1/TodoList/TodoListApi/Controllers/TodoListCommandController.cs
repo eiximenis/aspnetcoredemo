@@ -10,9 +10,11 @@ namespace TodoListApi.Controllers
     public class TodoListCommandController : ControllerBase
     {
         private IMediator _mediator;
-        public TodoListCommandController(IMediator mediator)
+        private ITodoItemRepository _repo;
+        public TodoListCommandController(IMediator mediator, ITodoItemRepository repo)
         {
             _mediator = mediator;
+            _repo = repo;
         }
 
         [HttpPost]
@@ -20,6 +22,15 @@ namespace TodoListApi.Controllers
         {
             var result = await _mediator.Send(new AddTodoItemCommand(item));
             return CreatedAtAction("GetById", "TodoListQuery", new { id = result }, null);
+        }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> MarkAsDone(int id)
+        {
+            var item = _repo.GetById(id);
+            item.MarkAsDone();
+            _repo.UnitOfWork.SaveChanges();
+            return Ok();
         }
     }
 }
