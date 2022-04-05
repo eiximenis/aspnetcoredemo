@@ -1,0 +1,36 @@
+﻿@if (Order is not null)
+{
+	<h1>Order details for order @Order.Name</h1>
+	<ul>
+		@foreach (var line in Order.Lines)
+		{
+			<li>Product: @line.ProductName (@line.Qty items) (@line.Price each)</li>
+		}
+	</ul>
+
+	<span>Total price: @Order.TotalPrice</span>
+}
+else
+{
+	<div>Loading...</div>
+}
+
+@code {
+	[Parameter]
+	public Order Order { get; set; }
+
+	[Parameter]
+	public bool ChangeName { get; set; }
+
+	[Parameter]
+	public EventCallback<string> OrderNameChanged { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		if (ChangeName)
+		{
+			Order.Name = "fdskljsdlkjdsjlksdfjlñsd";
+			await OrderNameChanged.InvokeAsync(Order.Name);
+		}
+	}
+}

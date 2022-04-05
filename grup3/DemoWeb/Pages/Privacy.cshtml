@@ -1,0 +1,27 @@
+﻿@page
+@using Microsoft.AspNetCore.Authentication
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<h2>Claims</h2>
+
+<ul>
+@foreach (var claim in User.Claims) {
+    <li>@claim.Type = @claim.Value</li>
+}
+</ul>
+
+<h2>Access Token</h2>
+
+@(await HttpContext.GetTokenAsync("access_token"))
+
+<h2>ID token</h2>
+
+@(await HttpContext.GetTokenAsync("id_token"))
+
+<h2>API Response</h2>
+
+@Model.ApiResult

@@ -1,0 +1,42 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<SuperDemo Order="_orders[0]" />
+<SuperDemo Order="_orders[1]"/>
+<SuperDemo Order="_orders[2]"/>
+<SuperDemo Order="_orders[3]"/>
+<SuperDemo Order="_orders[4]" ChangeName="true" OrderNameChanged="OnOrderChangedName"/>
+<hr />
+@_orders[4].Name
+
+<br />
+<input type="text" @bind-value="newName" />
+<button @onclick="buttonClicked">Click</button>
+<br />
+
+
+@code {
+	private Order[] _orders = new Order[5];
+	private string newName = "";
+
+	protected override void OnInitialized()
+	{
+		for (var idx=0; idx< 5; idx++)
+		{
+			_orders[idx] = OrderBuilder.NewOrder();
+		}
+	}
+
+	private void OnOrderChangedName(string name)
+	{
+		_orders[4].Name = name;
+	}
+
+	private void buttonClicked()
+	{
+		_orders[4].Name = newName;
+	}
+
+	
+}
