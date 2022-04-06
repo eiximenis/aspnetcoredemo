@@ -1,15 +1,17 @@
+using DemoApi.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddAuthentication(auth => auth.DefaultScheme = JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(auth => auth.DefaultScheme = DemoAuthenticateDefaults.AuthenticationScheme)
     .AddJwtBearer(jwt =>
     {
         jwt.Authority = "https://localhost:5001";
         jwt.Audience = "https://localhost:5001/resources";
-    });
+    })
+    .AddDemoAuth(config: opt => opt.MinLength = 10);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

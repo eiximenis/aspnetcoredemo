@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
@@ -27,6 +28,11 @@ builder.Services.AddRazorPages(opt =>
     opt.Conventions.AuthorizePage("/Privacy");
 });
 
+builder.Services.AddHttpClient("IdentityServer", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:5001");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,6 +50,12 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapGet("/Logout", async ctx =>
+{
+    await ctx.SignOutAsync();
+    ctx.Response.Redirect("/");
+});
 
 app.MapRazorPages();
 

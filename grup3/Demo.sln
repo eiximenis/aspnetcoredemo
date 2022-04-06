@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32317.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainIdentity", "MainIdentity\MainIdentity.csproj", "{3F2F7D5B-6535-4FF3-9497-DBAB911C64AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWeb", "DemoWeb\DemoWeb.csproj", "{5D6A3F0C-6A29-4A0C-933D-3A3F213C6ACB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWeb", "DemoWeb\DemoWeb.csproj", "{5D6A3F0C-6A29-4A0C-933D-3A3F213C6ACB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApi", "DemoApi\DemoApi.csproj", "{13BC3F24-B179-4959-8789-52B116D2B391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApi", "DemoApi\DemoApi.csproj", "{13BC3F24-B179-4959-8789-52B116D2B391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -48,6 +48,8 @@ namespace MainIdentity
                     RequirePkce = true,
                     RequireClientSecret = false,
                     AccessTokenType = AccessTokenType.Jwt,
+                    
+                    // AlwaysIncludeUserClaimsInIdToken= true,
 
                     RedirectUris = { "https://localhost:7017/signin-oidc" },
                     FrontChannelLogoutUri = "https://localhost:7017/signout-oidc",
