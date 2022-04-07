@@ -1,0 +1,20 @@
+﻿@if (LoadingData is null) {
+	@NotLoaded
+}
+else
+{
+	@Loaded
+}
+
+@code {
+	[Parameter]
+	public RenderFragment NotLoaded { get; set; }
+
+	[Parameter]
+	public RenderFragment Loaded { get; set; }
+
+	[Parameter]
+	public object? LoadingData { get; set; }
+
+
+}

@@ -1,0 +1,19 @@
+﻿<h3>Counter Value: @Value.Data</h3>
+
+<button class="btn-primary" @onclick="OnButtonClicked"> Click</button>
+
+@code {
+
+	[Parameter]
+	public IntHolder Value { get; set; }
+
+	[Parameter]
+	public EventCallback<int> OnCounterUpdated { get; set; }
+
+	private async Task OnButtonClicked()
+	{
+		Value.Data++;
+		await OnCounterUpdated.InvokeAsync(Value.Data);
+	}
+
+}

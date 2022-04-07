@@ -1,0 +1,34 @@
+﻿@page "/weather"
+@inject HttpClient Client
+
+<Wrapper>
+<h3>Weather</h3>
+</Wrapper>
+
+<Loading LoadingData="Data">
+	<NotLoaded >
+		<em>Loading weather data...</em>
+	</NotLoaded>
+	<Loaded>
+		<ul>
+			@foreach (var value in Data) {
+				<li>@value.date: @value.temperatureC (@value.summary)</li>
+			}
+		</ul>
+	</Loaded>
+</Loading>
+
+
+
+
+@code {
+
+	private WeatherData[] Data;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await Task.Delay(3000);
+		Data = await Client.GetFromJsonAsync<WeatherData[]>("/sample-data/weather.json");
+	}
+
+}
